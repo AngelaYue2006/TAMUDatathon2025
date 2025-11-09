@@ -3,12 +3,26 @@ import chat
 
 st.set_page_config(page_title="Mai Shan Yun Dashboard", layout="wide")
 
+suggested_questions = [
+    "Give me an overview of our sales."
+]
+
 with st.sidebar:
     st.header("Noodlebot")
+    st.write("**Suggested Questions:**")
+    for question in suggested_questions:
+        if st.button(question):
+            user_input = question
+            response = chat.get_chat_response(user_input)
+            st.markdown(f"**Q:** {question}")
+            st.markdown(f"**A:** {response}")
+
+    # Also keep a text input for custom questions
     user_input = st.text_input("Ask a question:")
     if user_input:
         response = chat.get_chat_response(user_input)
-        st.write(response)
+        st.markdown(f"**Q:** {user_input}")
+        st.markdown(f"**A:** {response}")
 
 # -----------------------------
 # HOME PAGE LAYOUT
@@ -38,4 +52,4 @@ with col2:
     # if st.button("Overview ->"):
     #     page = "1_Overview"
 
-    st.write("Use navigation bar on the left-hand side to see an overview!")
+    st.write("Use the navigation bar on the left-hand side to see data visualizations or ask our chatbot a question!")

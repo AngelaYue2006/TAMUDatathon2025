@@ -1,16 +1,55 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import chat
+
+st.set_page_config(layout="wide")
+
+suggested_questions = [
+    "What are the most popular items?",
+    "Any trends in ingredient usage?"
+]
+
+with st.sidebar:
+    st.header("Noodlebot")
+    st.write("**Suggested Questions:**")
+    for question in suggested_questions:
+        if st.button(question):
+            user_input = question
+            response = chat.get_chat_response(user_input)
+            st.markdown(f"**Q:** {question}")
+            st.markdown(f"**A:** {response}")
+
+    # Also keep a text input for custom questions
+    user_input = st.text_input("Ask a question:")
+    if user_input:
+        response = chat.get_chat_response(user_input)
+        st.markdown(f"**Q:** {user_input}")
+        st.markdown(f"**A:** {response}")
 
 folderName = "mai-shen-yun-main"
+# Create two columns: one for title, one for pills
+col1, col2 = st.columns([3, 2])  # adjust width ratio as you like
 
-# Once user selects a month, use that month's data
-month = st.pills("Month",["May","June","July","August","September","October"],default="October")
+with col1:
+    st.title("Overview")
+
+with col2:
+    month = st.pills("Month",["May","June","July","August","September","October"],default="October")
+
 if not month:
     month = "October"
 data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
 
-st.subheader(f"Popularity by Category for {month}")
+
+
+# # Once user selects a month, use that month's data
+# month = st.pills("Month",["May","June","July","August","September","October"],default="October")
+# if not month:
+#     month = "October"
+# data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
+
+st.subheader(f"Popularity by Category - {month}")
 # Create two columns
 col1, col2 = st.columns([1, 1.5])  # Adjust width ratio (table:chart)
 # Clean data
