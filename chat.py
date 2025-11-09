@@ -13,7 +13,6 @@ API_URL = "https://openrouter.ai/api/v1/chat/completions"  # OpenRouter chat end
 if not API_KEY:
     raise ValueError("OPENROUTER_API_KEY not found. Make sure it's in your .env file.")
 
-
 folder = "mai-shen-yun-main"
 months = ["May","June","July","August","September","October"]
 
@@ -26,26 +25,36 @@ for month in months:
         all_data.append(df)
 historical_data = pd.concat(all_data, ignore_index=True)
 
-# # Read each month's CSV manually
-# may_data = pd.read_csv(f"{folder}/May/May_Data_Items.csv")
-# june_data = pd.read_csv(f"{folder}/June/June_Data_Items.csv")
-# july_data = pd.read_csv(f"{folder}/July/July_Data_Items.csv")
-# august_data = pd.read_csv(f"{folder}/August/August.csv")
-# september_data = pd.read_csv(f"{folder}/September/September_Data_Items.csv")
-# october_data = pd.read_csv(f"{folder}/October/October_Data_Items.csv")
+# Calculate ingredient summary per month
+ingredient_summary = historical_data.groupby(['Month', 'Item Name']).agg(
+    total_count=('Count','sum'),
+    total_revenue=('Amount','sum')
+).reset_index()
 
-# # Add a month column to each
-# may_data['Month'] = 'May'
-# june_data['Month'] = 'June'
-# july_data['Month'] = 'July'
-# august_data['Month'] = 'August'
-# september_data['Month'] = 'September'
-# october_data['Month'] = 'October'
+# Define thresholds for understocking and overstocking
+UNDERSTOCK_THRESHOLD = 100  # example units
+OVERSTOCK_THRESHOLD = 1000  # example units
 
-# Combine into one DataFrame
-historical_data = pd.concat([may_data, june_data, july_data, august_data, september_data, october_data], ignore_index=True)
+understocked = ingredient_summary[ingredient_summary['total_count'] < UNDERSTOCK_THRESHOLD]
+overstocked = ingredient_summary[ingredient_summary['total_count'] > OVERSTOCK_THRESHOLD]
 
+# Generate context text for the chatbot
+context_lines = ["Ingredient usage summary by month:"]
+for month in months:
+    context_lines.append(f"\n{month}:")
+    month_data = ingredient_summary[ingredient_summary['Month'] == month]
+    for _, row in month_data.iterrows():
+        context_lines.append(f"- {row['Item Name']}: {row['total_count']} units sold")
 
+context_lines.append("\nUnderstocked items (low sales):")
+for _, row in understocked.iterrows():
+    context_lines.append(f"- {row['Month']}: {row['Item Name']} ({row['total_count']} units)")
+
+context_lines.append("\nOverstocked items (high sales):")
+for _, row in overstocked.iterrows():
+    context_lines.append(f"- {row['Month']}: {row['Item Name']} ({row['total_count']} units)")
+
+context_text = "\n".join(context_lines)
 
 def get_chat_response(user_input: str, model: str = "gpt-4o-mini") -> str:
     """
@@ -60,7 +69,7 @@ def get_chat_response(user_input: str, model: str = "gpt-4o-mini") -> str:
         "model": model,
         "messages": [
             {"role": "system", "content": "You are a data analyst who explains insights clearly and precisely."},
-            {"role": "user", "content": context_text + "\n\nQuestion: " +user_input}
+            {"role": "user", "content": context_text + "\n\nQuestion: " + user_input}
         ]
     }
 
@@ -70,7 +79,6 @@ def get_chat_response(user_input: str, model: str = "gpt-4o-mini") -> str:
         return f"Error: {response.status_code}, {response.text}"
 
     data = response.json()
-    # Extract the assistant's message
     try:
         return data["choices"][0]["message"]["content"]
     except (KeyError, IndexError):
