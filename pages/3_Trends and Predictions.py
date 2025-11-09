@@ -27,8 +27,7 @@ with st.sidebar:
         st.markdown(f"**Q:** {user_input}")
         st.markdown(f"**A:** {response}")
         
-st.header("Sales Over Time")
-st.write("2025")
+st.header("Sales Over Time - YTD")
 # TODO fill out this line chart with data across months!
 folder = "data"
 months = ["May","June","July","August","September","October"]
@@ -75,4 +74,14 @@ chart = alt.Chart(summary).mark_line().encode(
 st.altair_chart(chart)
 #st.line_chart(summary,y="Sales",x="Month")
 
+st.subheader("Future Recommendations")
+st.markdown('''
+Based on existing data this year, expect the summer months to see a **drop in sales** due to TAMU summer break. This can be forecasted to a lesser extent for winter break in December as well.
+            
+**Rice Noodles** are consistently the most understocked item and should be stocked more often, especially for being a medium-to-high revenue generating item.
 
+**Bokchoy** is consistently overstocked by a significant amount.
+
+The most popular items (sell the most by quantity) are **Beef Tossed Ramen**, the **Lunch Special**, **Beef Ramen**, and **Steam Pork Buns**. These items have been top sellers for the past few months and will likely sell consistently in the future as well. They should be prioritized as high-revenue generating items.
+
+''')
