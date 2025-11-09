@@ -76,9 +76,15 @@ with col2:
     st.markdown("### Summary of category")
     total_amount = data["Amount"].sum()
     total_count = data["Count"].sum()
+    # most_popular_row = data.loc[data["Count"].idxmax()]
+    # most_popular = most_popular_row["Item Name"]
 
     st.metric("Total Revenue This Month", f"${total_amount:,.2f}")
     st.metric("Total Quantity Sold", int(total_count))
+    #st.metric(f"Most popular of {option}",most_popular)
+    top5 = data.sort_values(by="Count", ascending=False).head(5)
+    st.write("### 🏆 Top 5 Most Popular Items")
+    st.dataframe(top5["Item Name"])
 
 # # Define a rainbow color sequence
 # rainbow_colors = [
