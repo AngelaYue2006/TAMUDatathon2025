@@ -21,10 +21,9 @@ data["Amount"] = (
 # TODO finish adding categories
 # TODO implement bar chart by category
 # TODO implement filter selector thing on the right
-st.pills("Month",["August","September","October"])
+st.pills("Month",["May","June","July","August","September","October"])
 option = st.selectbox('Select a category',["All categories","Boba flavors","Meats"])
 if(option == "Boba flavors"):
-    st.write("wow")
     data = data[data['']]
 
 # TODO make sure to clean the count column - if there's a comma in the value it becomes a string, but all of that category should be ints!
