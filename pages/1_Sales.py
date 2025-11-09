@@ -63,12 +63,16 @@ data["Amount"] = (
     .astype(float)                       # convert to float
 )
 
-option = st.selectbox('Select a category',["All products","Tea flavors","Meats","Fried Chicken"])
-if(option == "Tea flavors"):
+# TODO add dessert category
+# TODO add bowl? category to aummarize what kind of bowl is more popular
+# appetizers
+# drinks category
+option = st.selectbox('Select a category',["All products","Meats","Fried Chicken","Bowls","Tea flavors","Dessert"])
+if option == "Tea flavors":
     # Select only the items to display which refer to tea using regex
     data = data[data["Item Name"].str.contains(r"\Wtea", case=False, na=False)]
     
-elif(option == "Meats"):
+elif option == "Meats":
     # Select only the items which refer to meat
     dataT = data[data["Item Name"].str.contains(r"chicken", case=False, na=False)]
     chicken = dataT.sum()
@@ -78,13 +82,46 @@ elif(option == "Meats"):
     pork = dataT.sum()
     
     data = pd.DataFrame({"Item Name":["Chicken","Beef","Pork"],"Amount":[chicken[4],beef[4],pork[4]],"Count":[chicken[3],beef[3],pork[3]]})
-elif(option == "Fried Chicken"):
+elif option == "Fried Chicken":
     # Select fried chicken data values
     data = data[data["Item Name"].str.contains(r"(fried chicken)|(crunch chicken)", case=False, na=False)]
-
+elif option == "Bowls":
+    # Select only the items which refer to bowls
+    data = data[data["Item Name"].str.contains(r"(rice noodle)|(ramen)|(soup)", case=False, na=False)]
+    
+    #commented out code was organizing by type of bowl
+    # # Select tossed rice noodle
+    # dataT = data[data["Item Name"].str.contains(r"Tossed rice noodle", case=False, na=False)]
+    # tossedRiceNoodle = dataT.sum()
+    
+    # # Select tossed ramen
+    # dataT = data[data["Item Name"].str.contains(r"Tossed ramen", case=False, na=False)]
+    # tossedRamen = dataT.sum()
+    
+    # # Select ramen (untossed)
+    # dataT = data[data["Item Name"].str.contains(r"(?<!tossed )ramen", case=False, na=False)]
+    # ramen = dataT.sum()
+    
+    # data = pd.DataFrame({"Item Name":["Tossed Rice Noodles","Tossed Ramen","Ramen"],
+    #                      "Amount":[tossedRiceNoodle[4],tossedRamen[4],ramen[4]],
+    #                      "Count":[tossedRiceNoodle[3],tossedRamen[3],ramen[3]]})
+elif option == "Dessert":
+    
+    #select desserts
+    data = data[data["Item Name"].str.contains(r"(Brown Sugar Rice Cake)|(Bingsu)", case=False, na=False)]
+    
+    # riceCake = data[data["Item Name"].str.contains(r"Brown Sugar Rice Cake", case=False, na=False)].sum()
+    # bingsu = data[data["Item Name"].str.contains(r"Bingsu", case=False, na=False)].sum()
+    # ramen = data[data["Item Name"].str.contains(r"(?<!tossed )ramen", case=False, na=False)].sum()
+    
+    # data = pd.DataFrame({"Item Name":["Brown Sugar Rice Cake","Bingsu","Ramen"],
+    #                      "Amount":[riceCake[4],bingsu[4],ramen[4]],
+    #                      "Count":[riceCake[3],bingsu[3],ramen[3]]})
+elif option == "Appetizers":
+    data = data[data["Item Name"].str.contains(r"(Wonton(?! soup))|(Bingsu)", case=False, na=False)]
     
 control = st.segmented_control('Display',["By Revenue","By Quantity"])
-if(control == "By Revenue"):
+if control == "By Revenue":
     # Display by dollar value
     displayColumn = "Amount"
 else:
@@ -124,7 +161,7 @@ with col2:
     st.metric("Total Quantity Sold", int(total_count))
     #st.metric(f"Most popular of {option}",most_popular)
     top5 = data.sort_values(by="Count", ascending=False).head(5)
-    st.write("### 🏆 Top 5 Most Popular Items")
+    st.write("### 🏆 Top Most Popular Items")
     st.dataframe(top5["Item Name"])
 
 # # Define a rainbow color sequence
@@ -134,7 +171,7 @@ with col2:
 
 # # Create Altair chart with custom color scale
 # chart = alt.Chart(data).mark_bar().encode(
-#     x='Item Name', # TODO what
+#     x='Item Name',
 #     y=displayColumn,
 #     color=alt.Color('Category:N', scale=alt.Scale(range=rainbow_colors), legend=None)
 # )
