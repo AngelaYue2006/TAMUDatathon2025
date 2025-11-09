@@ -1,7 +1,14 @@
 import streamlit as st
+import chat
 
 st.set_page_config(page_title="Mai Shan Yun Dashboard", layout="wide")
 
+with st.sidebar:
+    st.header("Noodlebot")
+    user_input = st.text_input("Ask a question:")
+    if user_input:
+        response = chat.get_chat_response(user_input)
+        st.write(response)
 
 # -----------------------------
 # HOME PAGE LAYOUT
