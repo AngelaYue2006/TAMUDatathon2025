@@ -7,11 +7,24 @@ import pandas as pd
 # Load environment variables from .env
 load_dotenv()
 
-API_KEY = os.getenv("OPENROUTER_API_KEY")
-API_URL = "https://openrouter.ai/api/v1/chat/completions"  # OpenRouter chat endpoint
+# # API_KEY = os.getenv("OPENROUTER_API_KEY")
+# API_URL = "https://openrouter.ai/api/v1/chat/completions"  # OpenRouter chat endpoint
 
+# # if not API_KEY:
+# #     raise ValueError("OPENROUTER_API_KEY not found. Make sure it's in your .env file.")
+
+
+import streamlit as st
+
+# API_KEY = st.secrets.get("OPENROUTER_API_KEY")
+
+
+API_KEY = st.secrets.get("OPENROUTER_API_KEY")
 if not API_KEY:
-    raise ValueError("OPENROUTER_API_KEY not found. Make sure it's in your .env file.")
+    st.error("OPENROUTER_API_KEY not found. Please add it in Streamlit Secrets.")
+    st.stop()
+
+API_URL = "https://openrouter.ai/api/v1/chat/completions"
 
 folder = "data"
 months = ["May","June","July","August","September","October"]
