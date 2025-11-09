@@ -13,7 +13,7 @@ API_URL = "https://openrouter.ai/api/v1/chat/completions"  # OpenRouter chat end
 if not API_KEY:
     raise ValueError("OPENROUTER_API_KEY not found. Make sure it's in your .env file.")
 
-folder = "mai-shen-yun-main"
+folder = "data"
 months = ["May","June","July","August","September","October"]
 
 all_data = []
@@ -56,6 +56,8 @@ for _, row in overstocked.iterrows():
 
 context_text = "\n".join(context_lines)
 
+# to use gemini: "google/gemini-2.5-flash"
+# to use gpt: "gpt-4o-mini"
 def get_chat_response(user_input: str, model: str = "gpt-4o-mini") -> str:
     """
     Sends user input to OpenRouter and returns the chatbot response.

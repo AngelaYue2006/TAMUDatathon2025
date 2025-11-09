@@ -16,18 +16,20 @@ with st.sidebar:
     for question in suggested_questions:
         if st.button(question):
             user_input = question
-            response = chat.get_chat_response(user_input)
+            with st.spinner("Thinking..."):
+                response = chat.get_chat_response(user_input)
             st.markdown(f"**Q:** {question}")
             st.markdown(f"**A:** {response}")
 
     # Also keep a text input for custom questions
     user_input = st.text_input("Ask a question:")
     if user_input:
-        response = chat.get_chat_response(user_input)
+        with st.spinner("Thinking..."):
+            response = chat.get_chat_response(user_input)
         st.markdown(f"**Q:** {user_input}")
         st.markdown(f"**A:** {response}")
 
-folderName = "mai-shen-yun-main"
+folderName = "data"
 # Create two columns: one for title, one for pills
 col1, col2 = st.columns([3, 2])  # adjust width ratio as you like
 

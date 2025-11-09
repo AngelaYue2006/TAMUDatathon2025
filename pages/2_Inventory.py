@@ -14,14 +14,17 @@ with st.sidebar:
     for question in suggested_questions:
         if st.button(question):
             user_input = question
-            response = chat.get_chat_response(user_input)
+            with st.spinner("Thinking..."):
+                response = chat.get_chat_response(user_input)
+                
             st.markdown(f"**Q:** {question}")
             st.markdown(f"**A:** {response}")
 
     # Also keep a text input for custom questions
     user_input = st.text_input("Ask a question:")
     if user_input:
-        response = chat.get_chat_response(user_input)
+        with st.spinner("Thinking..."):
+            response = chat.get_chat_response(user_input)
         st.markdown(f"**Q:** {user_input}")
         st.markdown(f"**A:** {response}")
 
@@ -34,7 +37,7 @@ st.set_page_config(layout="wide")
 
 
 #read csv
-folderName = "mai-shen-yun-main"
+folderName = "data"
 
 # #defines a default bc otherwise month would be undefined
 # month = "October"
