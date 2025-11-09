@@ -27,7 +27,8 @@ with st.sidebar:
         st.markdown(f"**Q:** {user_input}")
         st.markdown(f"**A:** {response}")
         
-st.header("Trend")
+st.header("Sales Over Time")
+st.write("2025")
 # TODO fill out this line chart with data across months!
 folder = "data"
 months = ["May","June","July","August","September","October"]
@@ -37,19 +38,41 @@ for month in months:
     month_file = f"{folder}/{month}/{month}_Data_Items.csv"
     if os.path.exists(month_file):
         df = pd.read_csv(month_file)
+        # Convert dollar amounts to float
+        df["Amount"] = (
+            df["Amount"]
+            .replace('[\$,]', '', regex=True)   # remove $ and ,
+            .astype(float)                       # convert to float
+            )
         df['Month'] = month
         all_data.append(df)
 historical_data = pd.concat(all_data, ignore_index=True)
-st.write(historical_data)
+
+
+
+
+
+# display options
+control = st.segmented_control('Display',["By Revenue","By Quantity"])
+if control == "By Revenue":
+    # Display by dollar value
+    displayColumn = "Amount ($)"
+else:
+    # Display by quantity
+    displayColumn = "Sales"
+    
 # Calculate data summary per month
 summary = historical_data.groupby(['Month'],sort=False).agg(
     total_count=('Count','sum'),
     total_revenue=('Amount','sum')
 ).reset_index()
-summary.rename(columns={'total_count':'Sales'},inplace=True)
+summary.rename(columns={'total_count':'Sales','total_revenue':"Amount ($)"},inplace=True)
 chart = alt.Chart(summary).mark_line().encode(
     x=alt.X('Month:N',sort=summary["Month"].tolist()),
-    y='Sales:Q',
+    y=f'{displayColumn}:Q',
 )
+
 st.altair_chart(chart)
 #st.line_chart(summary,y="Sales",x="Month")
+
+
