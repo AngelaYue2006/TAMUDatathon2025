@@ -21,7 +21,7 @@ data["Amount"] = (
 # TODO finish adding categories
 # TODO implement bar chart by category
 # TODO implement filter selector thing on the right
-st.pills("Month",["August","September","October"])
+st.pills("Month",["May","June","July","August","September","October"])
 option = st.selectbox('Select a category',["All categories","Boba flavors","Meats"])
 if(option == "Boba flavors"):
     st.write("wow")
