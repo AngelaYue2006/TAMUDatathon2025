@@ -42,7 +42,7 @@
 3,1,Vegetable Fried Rice,31,$361.06
 3,1,Pork Fried Rice,27,$344.44
 3,1,Jumbo Chicken Tenders Combo (3),39,$378.75
-3,1,Golden Coconut Crunch Chicken(8),33,$339.86
+3,1,Golden Coconut Crunch Chicken,33,$339.86
 3,1,Wonton Soup,30,$328.39
 3,1,Crispy Pork Egg Roll(3),75,$295.23
 3,1,Vegetable Tossed Rice Noodle,24,$324.97
@@ -52,17 +52,17 @@
 3,1,Dr. Pepper,94,$279.40
 3,1,Pepsi zero,91,$260.31
 3,1,Pepsi,87,$253.94
-3,1,Tangy Honey Mustard Fried Chicken (8),28,$259.41
+3,1,Tangy Honey Mustard Fried Chicken,28,$259.41
 3,1,Sweet Ice Tea,87,$247.16
 3,1,Sweet Sesame Ball (6) w. red bean,48,$223.93
 3,1,Strawberry Sunrise,61,$249.01
 3,1,Mai's BF Chicken Cutlet,29,$218.02
-3,1,Onion Glory Fried Chicken(8),23,$237.88
+3,1,Onion Glory Fried Chicken,23,$237.88
 3,1,Golden Kiwi,49,$203.94
 4,1,Unsweet Ice Tea,69,$201.11
 4,1,Specialty Drink,69,$203.14
-4,1,Mai Buffalo Chicken Wings(8),22,$214.18
-4,1,Crispy French Fries(LG),43,$168.35
+4,1,Mai Buffalo Chicken Wings,22,$214.18
+4,1,Crispy French Fries,43,$168.35
 4,1,Lemonade,59,$175.02
 4,1,Mango Milk Tea,40,$190.20
 4,1,Strawberry Milk Tea,42,$186.52
@@ -95,10 +95,10 @@
 5,1,Ramune - Strawberry,5,$18.23
 5,1,BF chicken cutlet,2,$15.00
 5,1,Braised Chicken,5,$14.20
-5,1,Chili Pepper Fried Chicken (8),1,$11.99
-5,1,Tangy Honey Mustard Fried Chicken(8),1,$11.99
+5,1,Chili Pepper Fried Chicken,1,$11.99
+5,1,Tangy Honey Mustard Fried Chicken,1,$11.99
 5,1,Bottled Water,7,$12.64
-5,1,Wasabi Spiced Fried Chicken (8),1,$9.99
+5,1,Wasabi Spiced Fried Chicken,1,$9.99
 5,1,Shrimp (8),4,$12.84
 5,1,White Rice-To Go,3,$9.50
 5,1,Crispy French Fries,2,$7.98

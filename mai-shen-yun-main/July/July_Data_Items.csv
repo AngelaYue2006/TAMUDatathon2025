@@ -33,7 +33,7 @@
 2,1,Tempura Shrimp(3),76,$376.69
 2,1,Dr. Pepper,111,$327.63
 2,1,House Rice Noodle Soup,21,$339.32
-2,1,Citrus Honey Fried Chicken  (8),28,$275.98
+2,1,Citrus Honey Fried Chicken,28,$275.98
 2,1,Shrimp Fried Rice,19,$257.36
 2,1,Vegetable Rice Noodle Soup,22,$314.18
 2,1,Beef Fried Rice,18,$247.79
@@ -45,7 +45,7 @@
 3,1,Unsweet Ice Tea,78,$218.33
 3,1,Thai Milk Tea w. Boba (24oz),50,$200.73
 3,1,Pepsi,73,$208.47
-3,1,Onion Glory Fried Chicken(8),19,$180.30
+3,1,Onion Glory Fried Chicken,19,$180.30
 3,1,Pork Fried Rice,13,$165.57
 3,1,Spicy Cucumber Salad,29,$152.92
 3,1,Vegetable Tossed Rice Noodle,11,$161.14
@@ -53,7 +53,7 @@
 3,1,Golden kiwi (16oz),42,$161.82
 3,1,Strawberry Sunrise（16oz),42,$152.64
 3,1,Strawberry Sunrise Tea,33,$122.66
-3,1,Mai Buffalo Chicken Wings(8),14,$140.33
+3,1,Mai Buffalo Chicken Wings,14,$140.33
 3,1,Jumbo Chicken Tenders Combo (3),10,$98.46
 3,1,Starry - Sprite,35,$100.88
 3,1,Thai Milk Tea (24oz),17,$91.20
@@ -64,13 +64,13 @@
 4,1,Brown Sugar Rice Cake (5),14,$75.69
 4,1,Crispy French Fries,22,$85.08
 4,1,Lemonade,27,$76.64
-4,1,Chili Pepper Fried Chicken（8）,7,$69.43
-4,1,Tangy Honey Mustard Fried Chicken (8),8,$77.46
+4,1,Chili Pepper Fried Chicken,7,$69.43
+4,1,Tangy Honey Mustard Fried Chicken,8,$77.46
 4,1,Vegetable Tossed Ramen,5,$67.24
 4,1,Sweet Sesame Ball (6) w. red bean,15,$71.72
 4,1,Golden kiwi (24oz),17,$76.02
-4,1,Wasabi Spiced Fried Chicken(8),5,$59.95
-4,1,Wasabi Spiced Fried Chicken (8),6,$59.94
+4,1,Wasabi Spiced Fried Chicken,5,$59.95
+4,1,Wasabi Spiced Fried Chicken,6,$59.94
 4,1,Mango Milk Tea (24oz),13,$59.73
 4,1,Brown Sugar Milk Tea NO BOBA (24oz),15,$56.89
 4,1,Thai Milk Tea NO BOBA (24oz),17,$67.67
@@ -79,11 +79,11 @@
 4,1,Orange Crush,15,$45.72
 4,1,Hot Tea,18,$52.81
 4,1,Golden kiwi,12,$42.72
-4,1,Tangy Honey Mustard Fried Chicken(8),3,$35.97
+4,1,Tangy Honey Mustard Fried Chicken,3,$35.97
 4,1,Plain Fried Rice,10,$38.87
 5,1,Pepsi zero,11,$32.51
 5,1,Chunked Beef,7,$27.87
-5,1,Crispy French Fries(LG),6,$26.34
+5,1,Crispy French Fries,6,$26.34
 5,1,Bottled Soda,17,$30.15
 5,1,Rice Noodle,12,$18.35
 5,1,Pork Bun (1),9,$19.91
@@ -92,7 +92,7 @@
 5,1,House Tossed Rice Noodle,1,$15.68
 5,1,White Rice-To Go,4,$14.00
 5,1,White Rice - DINE IN,16,$15.80
-5,1,Chili Pepper Fried Chicken (8),1,$11.99
+5,1,Chili Pepper Fried Chicken,1,$11.99
 5,1,Shrimp (8),5,$14.88
 5,1,Bottled Water,7,$13.70
 5,1,Chicken Tender combo w fries and drink,1,$10.50
@@ -112,10 +112,10 @@
 6,1,Braised Egg,2,$4.78
 6,1,Braised Egg （2）,1,$1.89
 6,1,Mai's Special Sauce,2,$1.98
-6,1,Chunked Pork - 5 days exp,2,$0.00
+6,1,Chunked Pork,2,$0.00
 6,1,Water,1149,$0.00
-6,1,Chinese Bockchoy- 5 days exp,4,$0.00
-6,1,Braised Chicken - 5 days exp,1,$0.00
-6,1,Sliced Fruit  - 5 day expiration,26,$0.00
-6,1,Brew Tea - 5 days exp,7,$0.00
+6,1,Chinese Bockchoy,4,$0.00
+6,1,Braised Chicken,1,$0.00
+6,1,Sliced Fruit,26,$0.00
+6,1,Brew Tea,7,$0.00
 6,1,Ramune - Orange,1,$3.59

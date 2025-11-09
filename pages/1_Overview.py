@@ -1,13 +1,14 @@
 import streamlit as st
 import pandas as pd
 
-st.write("Displaying by quantity sold")
-pressed = st.button("Display by revenue generated") # TODO
-
-# TODO: clean data
 folderName = "mai-shen-yun-main"
 month = "August"
 data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
+
+month = st.pills("Month",["May","June","July","August","September","October"])
+folderName = "mai-shen-yun-main"
+if(month != "August"):
+    data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
 
 # Clean data
 
@@ -18,16 +19,31 @@ data["Amount"] = (
     .astype(float)                       # convert to float
 )
 
-# TODO finish adding categories
-# TODO implement bar chart by category
-# TODO implement filter selector thing on the right
-st.pills("Month",["May","June","July","August","September","October"])
-option = st.selectbox('Select a category',["All categories","Boba flavors","Meats"])
-if(option == "Boba flavors"):
-    st.write("wow")
-    data = data[data['']]
+option = st.selectbox('Select a category',["All products","Tea flavors","Meats","Fried Chicken"])
+if(option == "Tea flavors"):
+    # select only the items which refer to tea
+    # use regex?
+    data = data[data["Item Name"].str.contains(r"\Wtea", case=False, na=False)]
+    
+elif(option == "Meats"):
+    # select only the items which refer to meat
+    # use regex?
+    dataT = data[data["Item Name"].str.contains(r"chicken", case=False, na=False)]
+    chicken = dataT.sum()
+    dataT = data[data["Item Name"].str.contains(r"beef", case=False, na=False)]
+    beef = dataT.sum()
+    dataT = data[data["Item Name"].str.contains(r"pork", case=False, na=False)]
+    pork = dataT.sum()
+    
+    data = pd.DataFrame({"Item Name":["Chicken","Beef","Pork"],"Amount":[chicken[4],beef[4],pork[4]],"Count":[chicken[3],beef[3],pork[3]]})
+    #DEBUG: st.write(data)
+# TODO add chicken flavors
+elif(option == "Fried Chicken"):
+    dataT = data[data["Item Name"].str.contains(r"chicken", case=False, na=False)]
+    chicken = dataT.sum()
+    data = pd.DataFrame({"Item Name":["Chicken","Beef","Pork"],"Amount":[chicken[4],beef[4],pork[4]],"Count":[chicken[3],beef[3],pork[3]]})
 
-# TODO make sure to clean the count column - if there's a comma in the value it becomes a string, but all of that category should be ints!
+    
 control = st.segmented_control('Display',["By Revenue","By Quantity"])
 if(control == "By Revenue"):
     displayColumn = "Amount"
