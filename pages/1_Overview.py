@@ -2,12 +2,10 @@ import streamlit as st
 import pandas as pd
 
 folderName = "mai-shen-yun-main"
-month = "August"
-data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
 
-month = st.pills("Month",["May","June","July","August","September","October"])
-folderName = "mai-shen-yun-main"
-if(month != "August"):
+# Once user selects a month, use that month's data
+month = st.pills("Month",["May","June","July","August","September","October"],default="October")
+if month:
     data = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
 
 # Clean data
@@ -39,9 +37,9 @@ elif(option == "Meats"):
     #DEBUG: st.write(data)
 # TODO add chicken flavors
 elif(option == "Fried Chicken"):
-    dataT = data[data["Item Name"].str.contains(r"chicken", case=False, na=False)]
-    chicken = dataT.sum()
-    data = pd.DataFrame({"Item Name":["Chicken","Beef","Pork"],"Amount":[chicken[4],beef[4],pork[4]],"Count":[chicken[3],beef[3],pork[3]]})
+    data = data[data["Item Name"].str.contains(r"(fried chicken)|(crunch chicken)", case=False, na=False)]
+    # chicken = dataT.sum()
+    # data = pd.DataFrame({"Item Name":["Chicken","Beef","Pork"],"Amount":[chicken[4],beef[4],pork[4]],"Count":[chicken[3],beef[3],pork[3]]})
 
     
 control = st.segmented_control('Display',["By Revenue","By Quantity"])
