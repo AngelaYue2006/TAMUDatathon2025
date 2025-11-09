@@ -1,6 +1,5 @@
 import streamlit as st
 import chat
-import os
 
 st.set_page_config(page_title="Mai Shan Yun Dashboard", layout="wide")
 
@@ -30,12 +29,28 @@ with st.sidebar:
 # -----------------------------
 # HOME PAGE LAYOUT
 # -----------------------------
+
+
+
+from pathlib import Path
+
+# Resolve relative to project root
+logo_path = Path(__file__).parent / "assets" / "logo1.png"
+
+
+
+
+
     # Create two columns: image on left (1/3), text on right (2/3)
 col1, col2 = st.columns([1.5, 2], gap="large")
 
 with col1:
     # Smaller image on the left
-    st.image(os.path.join(os.path.dirname(__file__), "assets", "logo1.png"))
+    # st.image("assets/logo1.PNG")
+    if logo_path.exists():
+        st.image(str(logo_path))
+    else:
+        st.error(f"Logo not found at: {logo_path}")
 
 with col2:
 
