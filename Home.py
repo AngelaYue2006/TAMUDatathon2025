@@ -41,7 +41,7 @@ col1, col2 = st.columns([1.5, 2], gap="large")
 
 with col1:
     # Smaller image on the left
-    logo_path = Path("TAMUDatathon2025/assets/logo1.png")
+    logo_path = Path("assets/logo1.PNG")
     # logo_path = Path(__file__).parent / "assets" / "logo1.png"
     if logo_path.exists():
         st.image(str(logo_path))
