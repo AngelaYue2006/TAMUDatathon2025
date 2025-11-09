@@ -6,11 +6,19 @@ import os
 # pressed = st.button("Display by revenue generated") # TODO
 
 st.title("something")
+st.set_page_config(layout="wide")
 
 #read csv
 folderName = "mai-shen-yun-main"
-month = "October"
+
+# #defines a default bc otherwise month would be undefined
+# month = "October"
+# monthData = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
+
+
+month = st.pills("Month",["May","June","July","August","September","October"], default = "October")
 monthData = pd.read_csv(f"{folderName}/{month}/{month}_Data_Items.csv")
+
 ingredientsData = pd.read_csv(f"{folderName}/MSY Data - Ingredient.csv")
 
 #Create a DataFrame to store total ingredient usage
@@ -46,10 +54,16 @@ for _, row in ingredientsData.iterrows():
 total_sorted = total_ingredient_usage.T.sort_values(by=0, ascending=False)
 total_sorted.columns = ["Total Used"]
 
-# --- Streamlit display section ---
 st.subheader(f"Total Ingredient Usage for {month}")
-st.dataframe(total_sorted)
 
-# Optionally, visualize top 10 ingredients
-st.subheader("Top 10 Ingredients by Quantity Used")
-st.bar_chart(total_sorted.head(10))
+# Create two columns
+col1, col2 = st.columns([1, 1.5])  # Adjust width ratio (table:chart)
+
+# Left column → table
+with col1:
+    st.dataframe(total_sorted, use_container_width=True)
+
+# Right column → chart
+with col2:
+    st.subheader("Top 10 Ingredients")
+    st.bar_chart(total_sorted.head(10))
