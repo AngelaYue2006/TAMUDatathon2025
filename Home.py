@@ -1,5 +1,6 @@
 import streamlit as st
 import chat
+import os
 
 st.set_page_config(page_title="Mai Shan Yun Dashboard", layout="wide")
 
@@ -34,7 +35,7 @@ col1, col2 = st.columns([1.5, 2], gap="large")
 
 with col1:
     # Smaller image on the left
-    st.image("assets/logo1.png")
+    st.image(os.path.join(os.path.dirname(__file__), "assets", "logo1.png"))
 
 with col2:
 
