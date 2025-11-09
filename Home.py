@@ -33,12 +33,13 @@ with st.sidebar:
 
 
 from pathlib import Path
+import os
 
 # Resolve relative to project root
-logo_path = Path(__file__).parent / "assets" / "logo1.png"
+# logo_path = Path(__file__).parent / "assets" / "logo1.png"
 
-
-
+dir_path = os.path.dirname(os.path.abspath(__file__))
+image_path = os.path.join(dir_path, "assets", "logo1.png")
 
 
     # Create two columns: image on left (1/3), text on right (2/3)
@@ -47,10 +48,9 @@ col1, col2 = st.columns([1.5, 2], gap="large")
 with col1:
     # Smaller image on the left
     # st.image("assets/logo1.PNG")
-    if logo_path.exists():
-        st.image(str(logo_path))
-    else:
-        st.error(f"Logo not found at: {logo_path}")
+
+    st.image(str(image_path))
+
 
 with col2:
 
